@@ -6,5 +6,39 @@
     <welcome-file>index.jsp</welcome-file>
 </welcome-file-list>
     
+<context-param>
+    <param-name>jdbcUrl</param-name>
+    <param-value>jdbc:mariadb://127.0.0.1:3306/testdb</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>jdbcUser</param-name>
+    <param-value>user</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>jdbcPassword</param-name>
+    <param-value>user</param-value>
+  </context-param>
+  
+   <servlet>
+    <servlet-name>ControllerUsingURI</servlet-name>
+    <servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+    <init-param>
+        <param-name>configFile</param-name>
+        <param-value>
+        /WEB-INF/commandHandlerURI.properties
+        </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
 
+    <multipart-config>
+    
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerUsingURI</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

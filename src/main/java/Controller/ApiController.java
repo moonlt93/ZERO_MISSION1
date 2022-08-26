@@ -61,11 +61,13 @@ public class ApiController extends HttpServlet {
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject)parser.parse(result);
             JSONObject TbPublicWifiInfo = (JSONObject)obj.get("TbPublicWifiInfo");
+            JSONArray parse_listArr = (JSONArray)TbPublicWifiInfo.get("row");
             Object jsonOb = TbPublicWifiInfo.get("row");
-        
+            int len =parse_listArr.size();
+            
             JSONObject json = new JSONObject();
-            json.put("data", jsonOb);
-            System.out.println(json);
+            json.put("data", parse_listArr);
+            json.put("length", len);
 		
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -102,13 +104,15 @@ public class ApiController extends HttpServlet {
             JSONObject obj = (JSONObject)parser.parse(result);
             JSONObject TbPublicWifiInfo = (JSONObject)obj.get("TbPublicWifiInfo");
             Object jsonOb = TbPublicWifiInfo.get("row");
-        
+            JSONArray parse_listArr = (JSONArray)TbPublicWifiInfo.get("row");
+            
             JSONObject json = new JSONObject();
-            json.put("data", jsonOb);
+            json.put("data", parse_listArr);
+            json.put("size", parse_listArr.size());
             System.out.println(json);
             
 			 res.getWriter().print(json.toJSONString()); 
-            
+			
           
 	}catch(Exception e) {
 		e.printStackTrace();

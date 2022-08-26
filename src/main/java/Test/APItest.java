@@ -32,7 +32,7 @@ public class APItest {
             JSONObject TbPublicWifiInfo = (JSONObject)obj.get("TbPublicWifiInfo");
             
             JSONArray parse_listArr = (JSONArray)TbPublicWifiInfo.get("row");
-            for (int i=0;i< parse_listArr.size();i++) {
+            for (int i=0; i< parse_listArr.size(); i++) {
                 JSONObject wifi = (JSONObject) parse_listArr.get(i);
                 String adminNumber = (String) wifi.get("X_SWIFI_MGR_NO");           
                 String resident = (String) wifi.get("X_SWIFI_WRDOFC");    
