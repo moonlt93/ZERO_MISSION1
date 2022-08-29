@@ -63,8 +63,9 @@ public class apiDao {
 			
 			String sql ="select *,"+ buildDistanceQuery(x1,y1)
 					+ "FROM wifiapi"
-					+" ORDER BY (BD) ASC"
-					+" LIMIT 20" ;
+					+" HAVING distance <= 0.5"
+					+" ORDER BY (distance) asc "
+					+" LIMIT 0, 20";
 			
 			List<ApiVO> list = new ArrayList<>();
 		
@@ -84,9 +85,11 @@ public class apiDao {
 	    }
 	    
 	    private String buildDistanceQuery(double lat, double log) {
-	        final String sql = " (6371*acos(cos(radians(" + log + "))*cos(radians(Longitude))*cos(radians(Latitude) " +
-	                "    -radians(" + lat + "))+sin(radians(" + log + "))*sin(radians(Longitude)))) " +
-	                "    AS BD ";
+	  
+	        final String sql = " (6371*acos(cos(radians(" + log + "))"
+	        		+ "*cos(radians(latitude ))*cos(radians(longitude) " +
+	                "    -radians(" + lat + "))+sin(radians(" + log + "))*sin(radians(latitude)))) " +
+	                "    AS distance ";
 	        
 	        return sql;
 	    }

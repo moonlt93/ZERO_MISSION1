@@ -12,13 +12,15 @@
 </head>
 
 <body>
-    지금 <%=new java.util.Date()%></br> 
+   
+        <a href="/index.jsp">홈</a>
     <a href="/history.do">히스토리</a>
+    <a href="/api.do">openApi정보가져오기</a>
     <form action="/api.do" method="get">
     위도 <input type="text" name="latitude" value="${param.latitude}" />
-    </br> 
+   
     경도 <input type="text" name="longitude"value="${param.longitude }" />
-    </br>
+   
      <button type="button" id="find-me">내 위치 가져오기</button>
      <button type="submit">postTest</button>
     <br />
@@ -28,7 +30,7 @@
  <table border="1">
   <thead>
   <tr>
-   <td>거리</td>
+   <td>거리(Km)</td>
    <td>관리번호</td>
    <td>자치구</td>
    <td>와이파이명</td>
@@ -57,13 +59,13 @@
     <td><c:out value="${item.wifiName }"/></td>
     <td><c:out value="${item.roadAdd }"/></td>
     <td><c:out value="${item.detailAdd }"/></td>
+    <td><c:out value="${item.netWorkSpot }"/></td>
     <td><c:out value="${item.installSpot }"/></td>
      <td><c:out value="${item.installType }"/></td>
     <td><c:out value="${item.agency }"/></td>
     <td><c:out value="${item.serviceType }"/></td>
     <td><c:out value="${item.installDate }"/></td>
     <td><c:out value="${item.sideType }"/></td>
-    <td><c:out value="${item.netWorkSpot }"/></td>
      <td><c:out value="${item.connectView }"/></td>
     <td><c:out value="${item.longitude }"/></td>
     <td><c:out value="${item.latitude }"/></td>
@@ -75,10 +77,6 @@
 
 
     <script>
-    function distanceof(){
-    	
-    	
-    }
   
         function geoFindMe() {
         	navigator.geolocation.getCurrentPosition(success, onGeoError);

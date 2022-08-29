@@ -3,6 +3,7 @@ package Test;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,9 +12,12 @@ import org.json.simple.parser.JSONParser;
 public class APItest {
 	public static void main(String[] args) {
 		
+		for (int m = 0; m < args.length; m++) {
         try {
+				
+	
             
-            String urlStr = "http://openapi.seoul.go.kr:8088/4a576958656d6f6f3937506f48747a/json/TbPublicWifiInfo/1/15/";
+            String urlStr = "http://openapi.seoul.go.kr:8088/4a576958656d6f6f3937506f48747a/json/TbPublicWifiInfo/1/1000/";
             
             URL url = new URL(urlStr);
             
@@ -24,8 +28,9 @@ public class APItest {
             br = new BufferedReader(new InputStreamReader(url.openStream()));
             while ((line = br.readLine()) != null) {
                 result = result.concat(line);
-            }            
-            
+            }  
+        	 
+            System.out.println(result);
             // JSON parser 만들어 문자열 데이터를 객체화한다.
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject)parser.parse(result);
@@ -64,7 +69,7 @@ public class APItest {
                 sb.append("datetime").append(" ").append(datetime).append('\n');
                 System.out.println(sb.toString());                
             }
-            
+        	 
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +77,6 @@ public class APItest {
      
     }
 		
-		
-		
+	}
 
 }
