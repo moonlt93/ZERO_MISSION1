@@ -162,9 +162,16 @@ public class ControllerUsingURI extends HttpServlet  //ControllerUsingURI 클래
 		if (view != null) 
 		//만약 view가 null이 아니면
 		{
-			request.getRequestDispatcher(prefix + view + suffix)
-			//dispatcher를 이용해서 forward 객체 전달.
-			.forward(request, response);
+			if(view.equals("index")) {
+				request.getRequestDispatcher(view+".jsp").forward(request, response);
+			}else {
+			
+				request.getRequestDispatcher(prefix + view + suffix)
+				//dispatcher를 이용해서 forward 객체 전달.
+				.forward(request, response);
+			}
+			
+			
 		}
 		
 	}

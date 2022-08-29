@@ -30,6 +30,7 @@ public class APItest {
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject)parser.parse(result);
             JSONObject TbPublicWifiInfo = (JSONObject)obj.get("TbPublicWifiInfo");
+            System.out.println(TbPublicWifiInfo);
             
             JSONArray parse_listArr = (JSONArray)TbPublicWifiInfo.get("row");
             for (int i=0; i< parse_listArr.size(); i++) {
@@ -46,7 +47,6 @@ public class APItest {
                 Double posx = Double.valueOf((String)wifi.get("LAT"));
                 Double posy = Double.valueOf((String)wifi.get("LNT"));
                 String datetime = (String)wifi.get("WORK_DTTM");
-                
                 
                 
                 StringBuffer sb = new StringBuffer();

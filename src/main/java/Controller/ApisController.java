@@ -1,0 +1,78 @@
+package Controller;
+
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Service.ApiService;
+import Service.HistoryService;
+import Util.DistanceCal;
+import VO.ApiVO;
+import VO.HistoryVO;
+import mvc.command.CommandHandler;
+
+public class ApisController implements CommandHandler {
+	
+	private static String FORM_VIEW = "index";
+	
+	private ApiService api = new ApiService();
+	private HistoryService his = new HistoryService();
+	
+	@Override
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		if (req.getMethod().equalsIgnoreCase("get")) {
+			return processForm(req, res);
+		} else if (req.getMethod().equalsIgnoreCase("post")) {
+			return processSubmit(req, res);
+		} else {
+			res.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+			return null;
+		}
+	}
+
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		Enumeration<String> names = 
+				req.getParameterNames();
+		while (names.hasMoreElements()) {	
+			String name = (String) names.nextElement();
+			System.out.println("name : " + name);}
+		
+		System.out.println("lat"+req.getParameter("latitude"));
+		System.out.println("log"+req.getParameter("logitude"));
+		// 내위치 가져와서 계산 후  리스트 뽑기
+		return "index";
+	}
+
+	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+
+		if("".equals(req.getParameter("latitude"))||req.getParameter("longitude") == null) {
+			
+			long total = api.InsertThings();
+			req.setAttribute("total", total);
+			return "Downloading";
+			
+		}else {
+			
+		int number=	his.InsertHistory(req);
+		
+		if(number > 0) {
+		
+		double x1 =Double.parseDouble(req.getParameter("latitude"));
+		double y1 =Double.parseDouble(req.getParameter("longitude"));
+		List<ApiVO> list = api.selectList(x1,y1);
+
+			req.setAttribute("list", list);
+			
+						 
+		return FORM_VIEW;
+		}
+		
+		}
+		return FORM_VIEW;
+	
+	}
+	
+}
