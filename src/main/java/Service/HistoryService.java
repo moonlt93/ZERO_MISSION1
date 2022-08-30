@@ -1,6 +1,7 @@
 package Service;
 
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,6 +55,23 @@ public class HistoryService {
 		}
 		
 		return list;
+	}
+
+
+	public void deleteHistory(int no) {
+		
+		Connection con = ConnectionProvider.getConnection();
+		try {
+			con.setAutoCommit(false);
+			 dao.delete(con, no);
+			con.commit();
+			
+		} catch (SQLException e) {
+			JdbcUtil.rollback(con);
+			throw new RuntimeException(e);
+		}
+		
+		
 	}
 	
 	

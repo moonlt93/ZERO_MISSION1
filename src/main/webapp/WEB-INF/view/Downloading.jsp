@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
 </head>
 <body>
 <a href="/index.jsp">홈으로 가기</a>

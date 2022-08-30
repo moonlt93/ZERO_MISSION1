@@ -61,5 +61,20 @@ public class HistoryDao {
 		return list;
 	}
 
+	public void delete(Connection con, int no) throws SQLException {
+		String sql = "DELETE from history "
+				+ "WHERE ExtraId ="
+				+ " ? ";
+		
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, no);
+			
+			pstmt.executeQuery();
+		
+		}
+		
+
+	}
+
 
 }

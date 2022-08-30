@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,16 +15,18 @@ import mvc.command.CommandHandler;
 
 public class HistoryController  implements CommandHandler {
 	
-	private static final String FORM_VIEW ="";
+	private static final String FORM_VIEW ="historyList";
 	private HistoryService his = new HistoryService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("get")) {
-		
 			return processForm(req, res);
+			
+			
 		} else if (req.getMethod().equalsIgnoreCase("post")) {
 			return processSubmit(req, res);
+			
 		} else {
 			res.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
@@ -30,8 +34,19 @@ public class HistoryController  implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		System.out.println(req.getParameter("ExtraId"));
+		System.out.println("post동작");
+		
+		int no = Integer.parseInt(req.getParameter("ExtraId"));
+		
+		if(no >= 0) {
+			his.deleteHistory(no);
+	
+		}
+		
+		return  FORM_VIEW;
+		
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {

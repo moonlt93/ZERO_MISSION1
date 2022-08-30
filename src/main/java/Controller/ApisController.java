@@ -34,21 +34,13 @@ public class ApisController implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		Enumeration<String> names = 
-				req.getParameterNames();
-		while (names.hasMoreElements()) {	
-			String name = (String) names.nextElement();
-			System.out.println("name : " + name);}
-		
-		System.out.println("lat"+req.getParameter("latitude"));
-		System.out.println("log"+req.getParameter("logitude"));
-		// 내위치 가져와서 계산 후  리스트 뽑기
+	
 		return "index";
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 
-		if("".equals(req.getParameter("latitude"))||req.getParameter("longitude") == null) {
+		if("".equals(req.getParameter("latitude"))|| req.getParameter("longitude") == null) {
 			
 			long total = api.InsertThings();
 			req.setAttribute("total", total);
@@ -59,16 +51,17 @@ public class ApisController implements CommandHandler {
 		int number=	his.InsertHistory(req);
 		
 		if(number > 0) {
-		
-		double x1 =Double.parseDouble(req.getParameter("latitude"));
-		double y1 =Double.parseDouble(req.getParameter("longitude"));
-		List<ApiVO> list = api.selectList(x1,y1);
-
-			req.setAttribute("list", list);
+					
+					double x1 =Double.parseDouble(req.getParameter("latitude"));
+					double y1 =Double.parseDouble(req.getParameter("longitude"));
+					
+					List<ApiVO> list = api.selectList(x1,y1);
 			
-						 
-		return FORM_VIEW;
-		}
+					req.setAttribute("list", list);
+						
+									 
+					return FORM_VIEW;
+					}
 		
 		}
 		return FORM_VIEW;
