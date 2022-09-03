@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>히스토리 list 불러오기</h1>
-<a href="/index.jsp">홈으로</a>
+<a href="/">홈으로</a>
 
  <table border="1" id="historyList">
   <thead>
@@ -31,19 +31,17 @@
 		    <td><c:out value="${item.myLatitude }"/></td>
 		    <td><c:out value="${item.myLongitude }"/></td>
 		    <td><c:out value="${item.visitedDate }"/></td>
-		    <td><button id="delete_btn" type="button">삭제</button>
+		    <td><button class="delete_btn" type="button">삭제</button>
 		  </tr>
   </c:forEach> 
   </tbody>
   </table> 
   
   <script>
-  $("#delete_btn").click(function(){ 
-
-      var deletebtn = $(this);
-
-      var tr = deletebtn.parent().parent();
-      var td = tr.children();
+  $(".delete_btn").click(function(){ 
+	  var deletebtn = $(this);
+	  var tr = deletebtn.parent().parent();    
+	  var td = tr.children();
 
       
       var no = td.eq(0).text();

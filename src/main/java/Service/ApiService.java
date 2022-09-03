@@ -82,7 +82,31 @@ public class ApiService {
 		 return num;
 	}
 	
-	
+	public static String urlMaker(int q) throws Exception{
+	    int start_idx = 1 + (1000 * q);
+        int end_idx = 1000 + (1000 * q);
+        String key= "4a576958656d6f6f3937506f48747a";
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088");
+        urlBuilder.append("/" +  URLEncoder.encode(key,"UTF-8") );
+        urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") );
+        urlBuilder.append("/" + URLEncoder.encode("TbPublicWifiInfo","UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode(Integer.toString(start_idx),"UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode(Integer.toString(end_idx),"UTF-8"));
+
+        URL url = new URL(urlBuilder.toString());
+       
+        BufferedReader rd;
+
+        rd = new BufferedReader(new InputStreamReader(url.openStream()));
+
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        return sb.toString();
+    }
 	
 	public List<ApiVO> selectList(double x1, double y1) {
 		Connection conn = ConnectionProvider.getConnection();
@@ -98,32 +122,8 @@ public class ApiService {
 		return wifi;
 	
 	}
-	public static String urlMaker(int q) throws Exception{
-		    int start_idx = 1 + (1000 * q);
-	        int end_idx = 1000 + (1000 * q);
-	        String key= "4a576958656d6f6f3937506f48747a";
-	        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088");
-	        urlBuilder.append("/" +  URLEncoder.encode(key,"UTF-8") );
-	        urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") );
-	        urlBuilder.append("/" + URLEncoder.encode("TbPublicWifiInfo","UTF-8"));
-	        urlBuilder.append("/" + URLEncoder.encode(Integer.toString(start_idx),"UTF-8"));
-	        urlBuilder.append("/" + URLEncoder.encode(Integer.toString(end_idx),"UTF-8"));
-
-	        URL url = new URL(urlBuilder.toString());
-	       
-	        BufferedReader rd;
-
-	        rd = new BufferedReader(new InputStreamReader(url.openStream()));
-
-	        StringBuilder sb = new StringBuilder();
-	        String line;
-	        while ((line = rd.readLine()) != null) {
-	            sb.append(line);
-	        }
-	        rd.close();
-	        return sb.toString();
-	    }
-	}
+	
+}
 	
 
 

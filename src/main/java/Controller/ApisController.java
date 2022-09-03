@@ -34,20 +34,7 @@ public class ApisController implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-	
-		return "index";
-	}
-
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-
-		if("".equals(req.getParameter("latitude"))|| req.getParameter("longitude") == null) {
-			
-			long total = api.InsertThings();
-			req.setAttribute("total", total);
-			return "Downloading";
-			
-		}else {
-			
+		
 		int number=	his.InsertHistory(req);
 		
 		if(number > 0) {
@@ -58,14 +45,25 @@ public class ApisController implements CommandHandler {
 					List<ApiVO> list = api.selectList(x1,y1);
 			
 					req.setAttribute("list", list);
-						
-									 
-					return FORM_VIEW;
+	
 					}
-		
-		}
 		return FORM_VIEW;
+		}
 	
+	
+	
+
+	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+
+		if("".equals(req.getParameter("latitude"))|| req.getParameter("longitude") == null) {
+			
+			long total = api.InsertThings();
+			req.setAttribute("total", total);
+			return "Downloading";
+			
+		}
+		System.out.println("너냐");
+		return "index";	
 	}
-	
+
 }

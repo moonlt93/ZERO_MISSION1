@@ -63,7 +63,7 @@ public class apiDao {
 			
 			String sql ="select *,"+ buildDistanceQuery(x1,y1)
 					+ "FROM wifiapi"
-					+" HAVING distance <= 0.5"
+					+" HAVING distance <= 5"
 					+" ORDER BY (distance) asc "
 					+" LIMIT 0, 20";
 			
