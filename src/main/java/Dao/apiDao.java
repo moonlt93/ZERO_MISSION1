@@ -1,21 +1,20 @@
 package Dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Util.DistanceCal;
-import VO.ApiVO;
-import VO.HistoryVO;
+import DTO.ApiDTO;
 import jdbc.JdbcUtil;
 
 
 public class apiDao {
 	
-	 public void insertWifiInfo(Connection con, ApiVO api) throws SQLException {
+	 public void insertWifiInfo(Connection con, ApiDTO api) throws SQLException {
 	        final String sql = "INSERT IGNORE INTO wifiapi VALUES (" +
 	                    " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	        PreparedStatement pstmt = null;
@@ -36,7 +35,7 @@ public class apiDao {
 	        }
 	 }
 
-	    private void setInsertPreparedStatementFrom(PreparedStatement pstmt, ApiVO api) throws SQLException{
+	    private void setInsertPreparedStatementFrom(PreparedStatement pstmt, ApiDTO api) throws SQLException{
 	    	pstmt.setString(1, api.getAuthNum());
 	    	pstmt.setString(2, api.getResident());
 	    	pstmt.setString(3, api.getWifiName());
@@ -56,25 +55,25 @@ public class apiDao {
 	    }
 	    
 
-	    public List<ApiVO> selectList(Connection con, double x1, double y1) throws SQLException {
+	    public List<ApiDTO> selectList(Connection con, double x1, double y1) throws SQLException {
 	    	
 			
 			ResultSet rs = null;//초기화 .
 			
 			String sql ="select *,"+ buildDistanceQuery(x1,y1)
 					+ "FROM wifiapi"
-					+" HAVING distance <= 5"
+					+" HAVING distance <= 5.0"
 					+" ORDER BY (distance) asc "
 					+" LIMIT 0, 20";
 			
-			List<ApiVO> list = new ArrayList<>();
+			List<ApiDTO> list = new ArrayList<>();
 		
 			try(PreparedStatement pstmt = con.prepareStatement(sql)) {
 				
 				rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-			ApiVO vo = new ApiVO();
+			ApiDTO vo = new ApiDTO();
 				
 				list.add(vo.from(rs));
 				

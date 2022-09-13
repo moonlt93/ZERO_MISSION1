@@ -42,7 +42,6 @@ public class JDBCInitListener implements ServletContextListener {
 		String pw = application.getInitParameter("jdbcPassword");
 
 
-
 		// 1. 클래스 로딩
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -51,7 +50,7 @@ public class JDBCInitListener implements ServletContextListener {
 		}
 
 		try (Connection con = DriverManager.getConnection(url, user, pw);) {
-			System.out.println("연결 잘 됨");
+			System.out.println("Connection Open");
 	
 		} catch (Exception e) {
 			e.printStackTrace();

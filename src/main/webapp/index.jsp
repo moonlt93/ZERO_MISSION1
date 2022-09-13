@@ -40,23 +40,31 @@
           display: flex;
          font-weight: bold;
         }
-      
+     td{
+      text-align:center;
+      }
+       .updown {
+        border: 2px solid black;
+        width: 0.3px;
+        height: 30px;
+    }
+    .
 </style>
 <body>
 	
 	<h1>와이파이 정보 구하기</h1>
 	
 	<div class="location_form">
-		<a href="/">홈</a> 
-		<a href="/history.do" >위치 히스토리 목록</a> 
+		<a href="/">홈</a><span>&nbsp;|&nbsp;</span> 
+		<a href="/history.do" >위치 히스토리 목록</a><span>&nbsp;|&nbsp;</span> 
 		<a href="/api.do" >openApi정보가져오기</a>
 	</div>
 	<div class="formArea">
 		<form id="formClass" action="/api.do" method="post">
 			     LAT: <input type="text" id="latitude" name="latitude" value="${param.latitude}"
-				placeholder="0.0" /> 
+				placeholder="x좌표를 입력해주세요" /> 
 				,LNT: <input type="text"id="longitude" name="longitude" value="${param.longitude }"
-				placeholder="0.0" />
+				placeholder="y좌표를 입력해주세요" />
 			     <button type="button" id="find-me"style="font-weight:bold">내 위치 가져오기</button>
 			     <button type="button" id="wifi"style="font-weight:bold">근처 WIFI 정보 보기</button>
 		</form>

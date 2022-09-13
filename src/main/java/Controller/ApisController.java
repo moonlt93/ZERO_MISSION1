@@ -1,25 +1,22 @@
 package Controller;
 
-import java.util.Arrays;
-import java.util.Enumeration;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DTO.ApiDTO;
 import Service.ApiService;
 import Service.HistoryService;
-import Util.DistanceCal;
-import VO.ApiVO;
-import VO.HistoryVO;
 import mvc.command.CommandHandler;
 
 public class ApisController implements CommandHandler {
 	
 	private static String FORM_VIEW = "index";
 	
-	private ApiService api = new ApiService();
-	private HistoryService his = new HistoryService();
+	private ApiService apiService = new ApiService();
+	private HistoryService historyService = new HistoryService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -35,14 +32,14 @@ public class ApisController implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		
-		int number=	his.InsertHistory(req);
-		
+		int number=	historyService.InsertHistory(req);
+
 		if(number > 0) {
 					
 					double x1 =Double.parseDouble(req.getParameter("latitude"));
 					double y1 =Double.parseDouble(req.getParameter("longitude"));
 					
-					List<ApiVO> list = api.selectList(x1,y1);
+					List<ApiDTO> list = apiService.selectList(x1,y1);
 			
 					req.setAttribute("list", list);
 	
@@ -57,12 +54,12 @@ public class ApisController implements CommandHandler {
 
 		if("".equals(req.getParameter("latitude"))|| req.getParameter("longitude") == null) {
 			
-			long total = api.InsertThings();
+			long total = apiService.InsertThings();
 			req.setAttribute("total", total);
 			return "Downloading";
 			
 		}
-		System.out.println("너냐");
+	
 		return "index";	
 	}
 

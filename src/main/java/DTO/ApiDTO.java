@@ -1,17 +1,16 @@
-package VO;
+package DTO;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 
-@Setter
-@Getter
-public class ApiVO {
+@Data
+public class ApiDTO {
 	
 	private String AuthNum;
 	private String Resident;
@@ -36,9 +35,9 @@ public class ApiVO {
 	
 	
 	
-	  public ApiVO from(ResultSet rs) throws SQLException {
+	  public ApiDTO from(ResultSet rs) throws SQLException {
 	 
-		  ApiVO Api = new ApiVO();
+		  ApiDTO Api = new ApiDTO();
 			  Api.setAuthNum(rs.getString("AuthNum"));
 			  Api.setResident(rs.getString("Resident"));
 			  Api.setWifiName(rs.getString("WifiName"));
@@ -56,7 +55,7 @@ public class ApiVO {
 			  Api.setLongitude(rs.getDouble("Longitude"));
 			  Api.setContactDate(rs.getString("ContactDate"));
 			  Api.setDistance(Math.round((rs.getDouble("distance")* 10000 ) / 10000.0));
-			System.out.println(Api.getDistance());
+			
 			  return Api;
 		  
 	  }

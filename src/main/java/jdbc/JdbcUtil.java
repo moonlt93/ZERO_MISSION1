@@ -19,7 +19,6 @@ public class JdbcUtil {
 	}
 	
 	public static void close(AutoCloseable... ins) 
-	// 자동으로 닫아주는 메소드
 	
 	{
 		for (AutoCloseable i : ins) {

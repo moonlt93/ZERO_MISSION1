@@ -8,14 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import VO.HistoryVO;
+import DTO.HistoryDTO;
 import jdbc.JdbcUtil;
 
 public class HistoryDao {
 	
 	
-	public int insertHistory(Connection con, HistoryVO vo) {
+	public int insertHistory(Connection con, HistoryDTO vo) {
 		  final String sql = "INSERT IGNORE INTO history(MyLatitude,MyLongitude,VisitedDate) "
 		  		+ "VALUES (?, ?, ?)";
       PreparedStatement pstmt = null;
@@ -39,15 +38,15 @@ public class HistoryDao {
 		return 1;
 	}
 	
-	public List<HistoryVO> list(Connection con) throws SQLException{
+	public List<HistoryDTO> list(Connection con) throws SQLException{
 		String sql="select * from history h order by(ExtraId) desc";
 		
-		List<HistoryVO> list = new ArrayList<>();
+		List<HistoryDTO> list = new ArrayList<>();
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 		
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			HistoryVO vo = new HistoryVO();
+			HistoryDTO vo = new HistoryDTO();
 			
 			vo.setExtraId(rs.getString(1));
 			vo.setMyLatitude(rs.getDouble(2));

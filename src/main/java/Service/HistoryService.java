@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import DTO.HistoryDTO;
 import Dao.HistoryDao;
-import VO.HistoryVO;
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
 
@@ -20,7 +20,7 @@ public class HistoryService {
 	public int InsertHistory(HttpServletRequest req) {
 		int num=0;
 		Connection conn = ConnectionProvider.getConnection();
-		HistoryVO vo = new HistoryVO();
+		HistoryDTO vo = new HistoryDTO();
 		try {
 			
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -43,10 +43,10 @@ public class HistoryService {
 	}
 	
 	
-	public List<HistoryVO> getHistoryList(){
+	public List<HistoryDTO> getHistoryList(){
 		Connection con = ConnectionProvider.getConnection();
 		
-		List<HistoryVO> list;
+		List<HistoryDTO> list;
 		try {
 			list = dao.list(con);
 		}catch (SQLException e) {

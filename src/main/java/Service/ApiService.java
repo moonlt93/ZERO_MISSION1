@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,9 +21,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import DTO.ApiDTO;
+import DTO.HistoryDTO;
 import Dao.apiDao;
-import VO.ApiVO;
-import VO.HistoryVO;
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
 
@@ -32,6 +33,7 @@ public class ApiService {
 	
 	public long InsertThings() {
 		Connection conn = ConnectionProvider.getConnection();
+		
 		long num= 0;
 		try {
 				
@@ -41,7 +43,7 @@ public class ApiService {
 	            JSONObject TbPublicWifiInfo = (JSONObject)jsonObject.get("TbPublicWifiInfo");
 	            num = (long)TbPublicWifiInfo.get("list_total_count");
 
-	            ApiVO vo = null;
+	            ApiDTO vo = null;
 	            
                  int number= (int)(num/1000);
 	             if(num/1000 >0) {
@@ -53,7 +55,7 @@ public class ApiService {
 		             JSONArray jsonlist = (JSONArray) TBList.get("row");
 		           
 		          for (int i=0; i< jsonlist.size(); i++) {
-	              vo = new ApiVO();
+	              vo = new ApiDTO();
 	              JSONObject wifi = (JSONObject) jsonlist.get(i);
 	              
 	  			  vo.setAuthNum((String) wifi.get("X_SWIFI_MGR_NO"));//1
@@ -94,7 +96,11 @@ public class ApiService {
         urlBuilder.append("/" + URLEncoder.encode(Integer.toString(end_idx),"UTF-8"));
 
         URL url = new URL(urlBuilder.toString());
-       
+        
+        HttpURLConnection http = (HttpURLConnection)url.openConnection();
+        int statusCode = http.getResponseCode();
+        System.out.println(statusCode);
+      
         BufferedReader rd;
 
         rd = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -108,9 +114,9 @@ public class ApiService {
         return sb.toString();
     }
 	
-	public List<ApiVO> selectList(double x1, double y1) {
+	public List<ApiDTO> selectList(double x1, double y1) {
 		Connection conn = ConnectionProvider.getConnection();
-		List<ApiVO> wifi;
+		List<ApiDTO> wifi;
 		try {
 			
 			wifi= dao.selectList(conn,x1,y1);	

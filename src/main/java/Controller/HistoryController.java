@@ -7,16 +7,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DTO.ApiDTO;
+import DTO.HistoryDTO;
 import Service.ApiService;
 import Service.HistoryService;
-import VO.ApiVO;
-import VO.HistoryVO;
 import mvc.command.CommandHandler;
 
 public class HistoryController  implements CommandHandler {
 	
 	private static final String FORM_VIEW ="historyList";
-	private HistoryService his = new HistoryService();
+	private HistoryService historyService = new HistoryService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -41,7 +41,7 @@ public class HistoryController  implements CommandHandler {
 		int no = Integer.parseInt(req.getParameter("ExtraId"));
 		
 		if(no >= 0) {
-			his.deleteHistory(no);
+			historyService.deleteHistory(no);
 	
 		}
 		
@@ -52,7 +52,7 @@ public class HistoryController  implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		
 
-		  List<HistoryVO> list = his.getHistoryList();
+		  List<HistoryDTO> list = historyService.getHistoryList();
 		  
 		  req.setAttribute("list", list);
 
