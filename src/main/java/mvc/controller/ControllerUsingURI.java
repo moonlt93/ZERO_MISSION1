@@ -17,21 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 import mvc.command.CommandHandler;
 import mvc.command.NullHandler;
 
-/**
- * Servlet implementation class ControllerUsingURI
- */
-//서블릿으로 만들어진 mvc중 컨트롤러 역활.
-public class ControllerUsingURI extends HttpServlet  //ControllerUsingURI 클래스 이며, Http servlet의 상속을 받음. 
+
+public class ControllerUsingURI extends HttpServlet  
 	{
 	private static final long serialVersionUID = 1L; 
-	private String prefix = "/WEB-INF/view/"; // 필드 prefix
-	private String suffix = ".jsp";// 필드 suffix
+	private String prefix = "/WEB-INF/view/"; 
+	private String suffix = ".jsp";
 	private Map<String, CommandHandler> map; 
-	// Map<String,CommandHandler> key는 string 형식 value는 commandHandler를 거침.
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ControllerUsingURI() {
         super();
     }
@@ -80,20 +73,14 @@ public class ControllerUsingURI extends HttpServlet  //ControllerUsingURI 클래
   		
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		process(request, response);
 	
-	//doget 메소드  get방식 보내기
-	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		process(request, response);

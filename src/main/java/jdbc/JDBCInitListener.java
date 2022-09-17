@@ -10,31 +10,23 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-/**
- * Application Lifecycle Listener implementation class JDBCInitListener
- *
- */
+
 @WebListener
 public class JDBCInitListener implements ServletContextListener {
 
-	/**
-	 * Default constructor.
-	 */
 	public JDBCInitListener() {
+		System.out.println("Listener start");
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see ServletContextListener#contextDestroyed(ServletContextEvent)
-	 */
 	public void contextDestroyed(ServletContextEvent sce) {
+		System.out.println("destroy Servlet");
+		System.out.println("웹 앱 종료");
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
-	 */
 	public void contextInitialized(ServletContextEvent sce) {
+		//웹 애플리케이션 초기화 시 선언 
 		ServletContext application = sce.getServletContext();
 
 		String url = application.getInitParameter("jdbcUrl");
@@ -59,8 +51,6 @@ public class JDBCInitListener implements ServletContextListener {
 		ConnectionProvider.setUrl(url);
 		ConnectionProvider.setUser(user);
 		ConnectionProvider.setPassword(pw);
-
-	
 
 	}
 

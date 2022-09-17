@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 public class APItest {
 	public static void main(String[] args) {
 		
-		for (int m = 0; m < args.length; m++) {
+		
         try {
 				
 	
@@ -23,7 +23,8 @@ public class APItest {
             
             String line = "";
             String result = "";
-            
+            int cnt =0;
+            long num =0;
             BufferedReader br;
             br = new BufferedReader(new InputStreamReader(url.openStream()));
             while ((line = br.readLine()) != null) {
@@ -35,11 +36,17 @@ public class APItest {
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject)parser.parse(result);
             JSONObject TbPublicWifiInfo = (JSONObject)obj.get("TbPublicWifiInfo");
-            System.out.println(TbPublicWifiInfo);
+            num =  (long) TbPublicWifiInfo.get("list_total_count");
+            JSONArray Result =(JSONArray)TbPublicWifiInfo.get("Result");
             
-            JSONArray parse_listArr = (JSONArray)TbPublicWifiInfo.get("row");
-            for (int i=0; i< parse_listArr.size(); i++) {
-                JSONObject wifi = (JSONObject) parse_listArr.get(i);
+         
+            System.out.println(num);
+            
+
+            JSONArray list = (JSONArray)TbPublicWifiInfo.get("row");
+            for (int i=0; i< list.size(); i++) {
+                JSONObject wifi = (JSONObject) list.get(i);
+                cnt++;
                 String adminNumber = (String) wifi.get("X_SWIFI_MGR_NO");           
                 String resident = (String) wifi.get("X_SWIFI_WRDOFC");    
                 String wifiName = (String) wifi.get("X_SWIFI_MAIN_NM");          
@@ -67,9 +74,8 @@ public class APItest {
                 sb.append("posx").append(" ").append(posx).append('\n');
                 sb.append("posy").append(" ").append(posy).append('\n');
                 sb.append("datetime").append(" ").append(datetime).append('\n');
-                System.out.println(sb.toString());                
             }
-        	 
+        	 System.out.println(cnt);
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,6 +83,6 @@ public class APItest {
      
     }
 		
-	}
+	
 
 }
