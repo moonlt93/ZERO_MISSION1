@@ -12,7 +12,7 @@
 - javascript, servlet, jsp, jstl
 
 
-개발 진행 방식
+## 개발 진행 방식
 
 MVC, 커맨더 패턴 적용
 
