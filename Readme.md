@@ -4,12 +4,12 @@
 
 ## 기술 스택
 
-- JAVA (jdk 1.8)
+- JAVA (jdk 1.8),javascript
 - JDBC, connection pool, Maria DB
 - gson, 
 - ajax,lombok
 - HTML5, CSS3 
-- javascript, servlet, jsp, jstl
+- servlet, jsp, jstl
 
 
 ## 개발 진행 방식
