@@ -18,7 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import mvc.command.CommandHandler;
 import mvc.command.NullHandler;
 
-
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
 public class ControllerUsingURI extends HttpServlet  
 	{
 	private static final long serialVersionUID = 1L; 

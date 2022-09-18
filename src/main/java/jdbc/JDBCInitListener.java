@@ -10,7 +10,12 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
 @WebListener
 public class JDBCInitListener implements ServletContextListener {
 

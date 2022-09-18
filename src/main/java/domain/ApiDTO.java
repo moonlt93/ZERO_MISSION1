@@ -5,7 +5,12 @@ import java.sql.SQLException;
 
 import lombok.Data;
 
-
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
 @Data
 public class ApiDTO {
 

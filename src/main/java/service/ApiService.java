@@ -18,7 +18,13 @@ import dao.ApiDao;
 import domain.ApiDTO;
 import jdbc.ConnectionProvider;
 
+/**
+ * 
+ * @author 문진수 제로베이스 백엔드 3기
+ *
+ */
 public class ApiService {
+
 	private ApiDao dao = new ApiDao();
 
 	public long InsertThings() {
@@ -32,7 +38,7 @@ public class ApiService {
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(urlMaker(0));
 			JSONObject TbPublicWifiInfo = (JSONObject) jsonObject.get("TbPublicWifiInfo");
 			num = (long) TbPublicWifiInfo.get("list_total_count");
-			
+
 			ApiDTO vo = null;
 
 			int number = (int) (num / 1000);

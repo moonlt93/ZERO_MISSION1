@@ -2,7 +2,12 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
 public class JdbcUtil {
 		
 	public static void rollback(Connection con) 

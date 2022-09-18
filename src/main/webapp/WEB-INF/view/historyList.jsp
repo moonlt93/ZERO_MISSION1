@@ -103,10 +103,10 @@
 			var td = tr.children();
 
 			var no = td.eq(0).text();
-			let isBoss = confirm("삭제하시겠습니까?");
+			let check = confirm("삭제하시겠습니까?");
 
 		
-			if(isBoss){
+			if(check){
 
 			$.ajax({
 				url : "/history.do",
