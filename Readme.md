@@ -4,7 +4,7 @@
 
 ## 기술 스택
 
-- JAVA (jdk 1.8),javascript
+- JAVA (jdk 1.8) , javascript
 - JDBC, connection pool, Maria DB
 - gson, 
 - ajax,lombok
