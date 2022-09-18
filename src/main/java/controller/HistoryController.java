@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -7,12 +7,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DTO.ApiDTO;
-import DTO.HistoryDTO;
-import Service.ApiService;
-import Service.HistoryService;
+import domain.ApiDTO;
+import domain.HistoryDTO;
 import mvc.command.CommandHandler;
-
+import service.ApiService;
+import service.HistoryService;
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
 public class HistoryController  implements CommandHandler {
 	
 	private static final String FORM_VIEW ="historyList";
@@ -35,12 +40,10 @@ public class HistoryController  implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		
-		System.out.println(req.getParameter("ExtraId"));
-		System.out.println("post동작");
-		
 		int no = Integer.parseInt(req.getParameter("ExtraId"));
 		
 		if(no >= 0) {
+			//no 가 not null일때만 삭제
 			historyService.deleteHistory(no);
 	
 		}
@@ -57,7 +60,7 @@ public class HistoryController  implements CommandHandler {
 		  req.setAttribute("list", list);
 
 		
-		return "historyList" ;
+		return FORM_VIEW ;
 	}
 
 }

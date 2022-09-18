@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionProvider {
-	//url, user, password string으로 
 	private static String url;
 	private static String user;
 	private static String password;

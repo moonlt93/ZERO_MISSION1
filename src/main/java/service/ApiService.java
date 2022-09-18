@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import java.io.BufferedReader;
 
@@ -14,12 +14,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import DTO.ApiDTO;
-import Dao.apiDao;
+import dao.ApiDao;
+import domain.ApiDTO;
 import jdbc.ConnectionProvider;
 
 public class ApiService {
-	private apiDao dao = new apiDao();
+	private ApiDao dao = new ApiDao();
 
 	public long InsertThings() {
 		Connection conn = ConnectionProvider.getConnection();
@@ -84,10 +84,6 @@ public class ApiService {
 		urlBuilder.append("/" + URLEncoder.encode(Integer.toString(end_idx), "UTF-8"));
 
 		URL url = new URL(urlBuilder.toString());
-
-		HttpURLConnection http = (HttpURLConnection) url.openConnection();
-		int statusCode = http.getResponseCode();
-		System.out.println(statusCode);
 
 		BufferedReader rd = new BufferedReader(new InputStreamReader(url.openStream()));
 

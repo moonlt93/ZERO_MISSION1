@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 
 import java.sql.Connection;
 
@@ -8,15 +8,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import DTO.ApiDTO;
+import domain.ApiDTO;
 import jdbc.JdbcUtil;
-
-public class apiDao {
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
+public class ApiDao {
 
 	public void insertWifiInfo(Connection con, ApiDTO api) throws SQLException {
-		final String sql = "INSERT IGNORE INTO wifiapi "
-				+ "VALUES (" + " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
-		
+		final String sql = "INSERT IGNORE INTO wifiapi " + "VALUES ("
+				+ " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+
 		PreparedStatement pstmt = null;
 
 		try {
@@ -51,8 +56,6 @@ public class apiDao {
 		pstmt.setDouble(15, api.getLatitude());
 		pstmt.setString(16, api.getContactDate());
 	}
-	
-	
 
 	public List<ApiDTO> selectList(Connection con, double x1, double y1) throws SQLException {
 
@@ -68,7 +71,7 @@ public class apiDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				
+
 				ApiDTO vo = new ApiDTO();
 				list.add(vo.from(rs));
 

@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import java.sql.Connection;
 
@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import DTO.HistoryDTO;
-import Dao.HistoryDao;
+import dao.HistoryDao;
+import domain.HistoryDTO;
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
 
@@ -26,9 +26,7 @@ public class HistoryService {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date now = new Date();
 			String now_dt = format.format(now);
-		
-	System.out.println(req.getParameter("latitude"));
-	System.out.println(req.getParameter("longitude"));
+
 			vo.setMyLatitude(Double.parseDouble(req.getParameter("latitude")));
 			vo.setMyLongitude(Double.parseDouble(req.getParameter("longitude")));
 			vo.setVisitedDate(now_dt);

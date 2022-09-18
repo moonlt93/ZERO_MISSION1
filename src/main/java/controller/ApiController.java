@@ -1,21 +1,27 @@
-package Controller;
+package controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DTO.ApiDTO;
-import Service.ApiService;
-import Service.HistoryService;
+import domain.ApiDTO;
 import mvc.command.CommandHandler;
-
-public class ApisController implements CommandHandler {
+import service.ApiService;
+import service.HistoryService;
+/**
+ * 
+ * @author 문진수
+ * 제로베이스 백엔드 3기 
+ *
+ */
+public class ApiController implements CommandHandler {
 
 	private static String FORM_VIEW = "index";
 
 	private ApiService apiService = new ApiService();
 	private HistoryService historyService = new HistoryService();
+	
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {

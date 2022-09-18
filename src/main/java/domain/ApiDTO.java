@@ -1,11 +1,10 @@
-package DTO;
+package domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Data
 public class ApiDTO {

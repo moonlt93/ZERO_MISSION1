@@ -15,14 +15,9 @@ import javax.servlet.annotation.WebListener;
 public class JDBCInitListener implements ServletContextListener {
 
 	public JDBCInitListener() {
-		System.out.println("Listener start");
-		// TODO Auto-generated constructor stub
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
-		System.out.println("destroy Servlet");
-		System.out.println("웹 앱 종료");
-		// TODO Auto-generated method stub
 	}
 
 	public void contextInitialized(ServletContextEvent sce) {
@@ -42,7 +37,6 @@ public class JDBCInitListener implements ServletContextListener {
 		}
 
 		try (Connection con = DriverManager.getConnection(url, user, pw);) {
-			System.out.println("Connection Open");
 	
 		} catch (Exception e) {
 			e.printStackTrace();

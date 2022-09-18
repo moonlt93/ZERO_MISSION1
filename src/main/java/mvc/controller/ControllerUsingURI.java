@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import java.io.FileReader;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class ControllerUsingURI extends HttpServlet
     
     @Override
     public void init() throws ServletException 
-    //init()
+    //초기화 
     {
     	map = new HashMap<>(); 
     	
@@ -124,7 +125,6 @@ public class ControllerUsingURI extends HttpServlet
 			if(view.equals("index")) {
 				request.getRequestDispatcher(view+".jsp").forward(request, response);
 			}else {
-			
 				request.getRequestDispatcher(prefix + view + suffix)
 				.forward(request, response);
 			}
