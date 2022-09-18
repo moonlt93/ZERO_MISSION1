@@ -6,7 +6,7 @@
 
 - JAVA (jdk 1.8)
 - JDBC, connection pool, Maria DB
-- okhttp, gson, 
+- gson, 
 - ajax,lombok
 - HTML5, CSS3 
 - javascript, servlet, jsp, jstl
