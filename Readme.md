@@ -16,8 +16,6 @@
 
 MVC, 커맨더 패턴 적용
 
-GET, POST METHOD 분리해서 사용.
-
 ajax를 이용한 비동기식 구현
 
 
